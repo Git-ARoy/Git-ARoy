@@ -2,24 +2,24 @@ name: Generate Pac-Man Contribution Graph
 
 on:
   schedule:
-    - cron: "0 0 * * *" # runs once daily
-  workflow_dispatch:
+    - cron: "0 0 * * *" # runs daily at midnight
+  workflow_dispatch: # allows manual run
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Generate Snake
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate Pac-Man Contribution Graph
-        uses: Platane/snk@v3
+      - name: Generate Pac-Man graph
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: Git-ARoy
           outputs: |
             dist/pacman-contribution-graph.svg
-            dist/pacman-contribution-graph-dark.svg
+            dist/pacman-contribution-graph-dark.svg?palette=github-dark
 
       - name: Push generated files
         uses: crazy-max/ghaction-github-pages@v3
