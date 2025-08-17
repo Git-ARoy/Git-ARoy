@@ -1,5 +1,8 @@
 name: Generate Pac-Man Contribution Graph
 
+permissions:
+  contents: write   # ✅ allow pushing to branches
+
 on:
   schedule:
     - cron: "0 0 * * *" # runs daily at midnight
